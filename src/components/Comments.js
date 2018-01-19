@@ -2,46 +2,94 @@ import React, { Component } from 'react';
 import { bindActionCreators } from "redux"
 import { connect } from "react-redux";
 import * as actions from "../actions/actionCreators";
+import comments from '../data/comments';
+
+class Kom extends Component {
+
+state = {
+    value: ""
+}
+
+// componentDidMount(){
+//     //One listener for every item added
+//     this.props.addListener();
+
+// }
+
+componentDidMount(){
+  //We want to fetch them all! Like with the movies
+  this.props.fetchComments();
+  console.log("commennts",this.props.comments)
+}
 
 
-class Comments extends Component {
   renderComment(comment, i) {
+      console.log("comment", comment.text)
+      console.log("user", comment.anv)
+
+      // console.log("props", this.state.user)
+      
     return (
       <div className="comment" key={i}>
         <p>
-          <strong>{comment.user}</strong>
-          {comment.text}
-          <button className="remove-comment" onClick={this.props.removeComment.bind(null, this.props.params.postId, i)}>&times;</button>
+          {comment.anv }
+          {comment.text } 
+          {/* {this.props.user.email} */}
+          {/* <button className="remove-comment" onClick={this.props.removeComment.bind(null, this.props.params.match.params.id, i)}>&times;</button> */}
         </p>
       </div>
     )
   }
- 
-  handleSubmit = e =>  {
-    e.preventDefault();
-    const { postId } = this.props.match.params;
-    const author = this.refs.author.value;
-    const comment = this.refs.comment.value;
-    this.props.addComment(postId, author, comment);
-    this.refs.commentForm.reset();
-    console.log(this.props.match.params)
-    console.log("psotid", postId, "author", author, "comment", comment)
-  }
+
+add = () => {
+    //No need for the random ID, just send these values
+    this.props.addComment({
+      text: this.state.value,
+      anv: this.props.user.email
+     
+    }
+        
+    );
+
+}
+
+// remove = (kommentar) => {
+//     this.props.removeTodo(kommentar);
+//   }
+
+//   edit = (kommentar) => {
+//     const editedTodo = Object.assign({}, todo, { text: this.state.value});
+//     this.props.editTodo(editedTodo);
+//   }
+
+onChange = e => this.setState({ [e.target.name]: e.target.value})
+
+
   render() {
-    console.log("user", this.props.user)
-    if (this.props.user) 
-    return (
+
+    
+    // const list = this.props.comments.map(koms, i => 
+    //   <div className="comment" key={i}>
+    //     <p>
+    //       <strong>{koms.user}</strong>
+    //       {koms.text}
+    //       </p>
+    // </div>
+    // )
+      return (
       <div className="comments">
-        {/* {this.props.postComments.map(this.renderComment)} */}
-        <form ref="commentForm" className="comment-form" onSubmit={this.handleSubmit}>
-          <input type="text" ref="author" placeholder={this.props.user.email} value={this.props.user.email}/>
-          <input type="text" ref="comment" placeholder="comment" />
-          <input type="submit" hidden />
-        </form>
+        { this.props.comments.map(this.renderComment) }
+        <input type="email" ref="author" placeholder={this.props.user.email} readOnly/>
+        <input type="text" onChange={this.onChange} placeholder="comment" name="value" value={this.state.value} />
+       
+        <button className="button" onClick={this.add}> Add comment </button>
+        {/*{ list }*/}
       </div>
-    )
-  }
-};
+    );
+    
+}
+}
+    
 
 function mapDispatchToProps(dispatch){
   return bindActionCreators(actions, dispatch)    
@@ -50,12 +98,11 @@ function mapDispatchToProps(dispatch){
 
 function mapStateToProps(state){
   return {
-      posts: state.posts,
+      post: state.post,
       comments: state.comments,
       user: state.user
     
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Comments);
-
+export default connect(mapStateToProps, mapDispatchToProps)(Kom);

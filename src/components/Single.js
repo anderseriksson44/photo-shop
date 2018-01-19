@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Photo from './Photo';
 import Menu from "./Menu"
 import Comments from './Comments';
-import Kom from "./Kom"
+// import Kom from "./Kom"
 import { bindActionCreators } from "redux"
 import { connect } from "react-redux";
 import * as actions from "../actions/actionCreators";
@@ -25,9 +25,8 @@ class Single extends Component {
         
       <div className="single-photo">
         <Photo i={i} post={post} {...this.props} />
-        <Kom postComments={postComments} {...this.props}/>
-        {/* <Comments postComments={postComments} {...this.props} /> */}
-      </div>
+        <Comments postComments={postComments} {...this.props}/>
+        </div>
     </div>
     )
   }
