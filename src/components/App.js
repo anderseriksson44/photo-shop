@@ -27,7 +27,6 @@ class App extends Component {
         <Menu/>
           <div className="App">
             <Link to="/" className="linkclass"> Photo@Shop</Link>
-            <h2>Du är inloggad som {this.props.user.email} </h2>
             <div className="photo-grid"> 
              { list }
             </div>

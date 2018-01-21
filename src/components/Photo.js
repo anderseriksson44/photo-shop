@@ -30,7 +30,7 @@ class Photo extends Component {
                             {comments[post.id] ? comments[post.id].length : 0 }
                     </span>
                 </Link>
-                <button onClick= {this.props.purchase.bind(null, i)} className="purchase">Buy</button>
+                {/* <button onClick= {this.props.purchase.bind(null, i)} className="purchase">Buy</button> */}
             </div>
         </figcaption>
     </figure>

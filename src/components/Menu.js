@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import Login from "./Login"
+import { Link } from "react-router-dom"
 
 class Menu extends Component {
 
     render () {
         return (
-            <div>
+            <div className="menu">
                 <ul>
-                    <li><a href="/">Home</a></li>
+                    <li className="home"><Link to="/">Photo@Shop</Link></li>
                     <li style={{"float":"right"}}>
                     <Login/>
                     

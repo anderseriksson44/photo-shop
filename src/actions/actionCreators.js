@@ -1,15 +1,16 @@
 import firebase from "../firebase"
 
-// export function login(user, passw){
-//   return function(dispatch){
-//     firebase.database().ref(`users`).push("user":user.email).push(passw)
-//     .catch(error => {
-//       dispatch({type: "FETCH_ERROR", error: error.message});
-//     })
-//   }
-// }
+export function login(user, passw){
+  return function(dispatch){
+    firebase.database().ref(`users`).push("user":user.email).push(passw)
+    .catch(error => {
+      dispatch({type: "FETCH_ERROR", error: error.message});
+    })
+  }
+}
 
 // increment
+
 export function increment(index) {
   return {
     type: 'INCREMENT_LIKES',
@@ -17,27 +18,41 @@ export function increment(index) {
   }
 }
 
-// add comment
-// export function addComment(comment, postId) {
-//   return {
-//     type: 'ADD_COMMENT',
-//     comment,
-//     postId
+// export function increment(index, postId) {
+//   return function (dispatch) {
+//     firebase.database().ref(`posts/${postId}/likes`).push(index)
+    
+//     dispatch({
+//       type: 'INCREMENT_LIKES',
+//       index
+//       })
 //   }
 // }
 
-export function addComment(comment){
-  return function(dispatch){
-    firebase.database().ref(`comments`).push(comment)
-    .catch(error => {
-      //Should use multiple errors! But I am too lazy :) You do it!
-      dispatch({type: "FETCH_ERROR", error: error.message});
-    })
+
+//add comment
+export function addComment(comment) {
+  console.log("comment", comment)
+  return {
+    type: 'ADD_COMMENT',
+    comment,
+   
   }
 }
 
+// export function addComment(comment){
+ 
+//   return function(dispatch){
+//     firebase.database().ref(`comments`).push(comment)
+//     .catch(error => {
+//       //Should use multiple errors! But I am too lazy :) You do it!
+//       dispatch({type: "FETCH_ERROR", error: error.message});
+//     })
+//   }
+// }
 
-export function fetchComments(){
+
+export function fetchComments(postId){
   return function(dispatch){
     return firebase.database().ref(`comments`).on('value', comments => {
         /* With once('value') we get an object of objects,  
@@ -49,7 +64,7 @@ export function fetchComments(){
           tempList.push({...child.val(), key: child.key});
         })
         //When we are done creating the array, dispatch to state
-        dispatch({ type: "FETCH_ALL_COMMENTS", comments: tempList });
+        dispatch({ type: "FETCH_COMMENTS", comments: tempList });
     })
   }
 }

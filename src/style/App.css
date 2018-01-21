@@ -27,14 +27,54 @@ li a:hover {
     background-color: #111;
 }
 
+form {
+	margin-top: 5px;
+}
+
+.App {
+	
+	text-align: center;
+	align-content: center;
+}
+.loggin {
+	font-size: 10pt;
+}
+
+.regbutton {
+	color: white;
+	margin-left: 5px;
+	background-color: green;
+	font-family: sans-serif;
+	font-size: 10pt;
+	border-radius: 5px;
+	width: 70px;
+	height: 25px;
+}
+
 .menubutton {
   color: white;
+  margin-right: 10px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  width: 80px;
+  height: 30px;
+  border-radius: 5px;
+  background-color:darkslategray;
+  font-size: 10pt;
+  text-align: center;
+  padding: 0;
   
 
 }
 .linkclass {
 	font-size: 50pt;
 	font-family: sans-serif;
+	text-align: center;
+	text-decoration: none;
+	margin-bottom: 40px;
+	top: 140px;
+	font-family: fantasy;
+	font-weight: 400;
 	
 }
 .menubutton:hover,
@@ -45,16 +85,25 @@ li a:hover {
 }
 
 .loginform {
-  margin-right: 10px;
+  margin-right: 30px;
   display: block;
   color: white;
 }
-
+.home {
+	margin-top: 20px;
+	margin-left: 100px;
+	font-family: fantasy;
+	font-size: 20pt;
+}
+.menu {
+	margin-bottom: 20px;
+}
 .photo-grid {
 	display: flex;
 	flex-wrap: wrap;
-	max-width: 1200px;
+	max-width: 800px;
 	margin: 0 auto;
+	margin-top: 30px;
 }
 
 .grid-figure,
@@ -70,6 +119,9 @@ li a:hover {
 	position: relative;
 }
 
+.user {
+	font-size: 10pt;
+}
 .single-photo {
 	max-width: 900px;
 	margin: 0 auto;

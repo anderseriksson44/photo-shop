@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { bindActionCreators } from "redux"
 import { connect } from "react-redux";
 import * as actions from "../actions/actionCreators";
-import comments from '../data/comments';
+// import comments from '../data/comments';
 
-class Kom extends Component {
+class Comments extends Component {
 
 state = {
     value: ""
@@ -32,7 +32,7 @@ componentDidMount(){
     return (
       <div className="comment" key={i}>
         <p>
-          {comment.anv }
+          <span className="user"> {comment.anv } &emsp;&emsp;&emsp;</span>
           {comment.text } 
           {/* {this.props.user.email} */}
           {/* <button className="remove-comment" onClick={this.props.removeComment.bind(null, this.props.params.match.params.id, i)}>&times;</button> */}
@@ -43,9 +43,11 @@ componentDidMount(){
 
 add = () => {
     //No need for the random ID, just send these values
+    console.log("post", this.props.post)
     this.props.addComment({
       text: this.state.value,
-      anv: this.props.user.email
+      anv: this.props.user.email,
+      postid: this.props.post
      
     }
         
@@ -105,4 +107,4 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Kom);
+export default connect(mapStateToProps, mapDispatchToProps)(Comments);

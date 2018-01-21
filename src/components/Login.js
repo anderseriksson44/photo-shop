@@ -58,11 +58,11 @@ class Login extends Component {
                 <form onSubmit={this.register}>
                     <input type="text" onChange={this.onChange} name="email" value={this.state.email} />
                     <input type="password" onChange={this.onChange} name="passw" value={this.state.passw}/>
-                    <input type="submit" value="Register" />
+                    <input className="regbutton" type="submit" value="Register" />
                 </form>
                     <button className="menubutton" onClick={this.login}> Login </button> 
                     <button className="menubutton" onClick={this.logout}>Logout </button>
-                    Logged in as: { this.props.user && this.props.user.email }
+                    <span className="loggin"> Logged in as: { this.props.user && this.props.user.email }</span>
     
             </div>
         )
